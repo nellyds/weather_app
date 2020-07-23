@@ -40,6 +40,7 @@ export default {
   methods: {
     searchWoeid: function() {
       // the user sends a request to the api containing a string value that hopefully matches a city with a woeid and forecast data available
+      if (this.queryString.length >3){
       let paramUrl = "location/search/?query=" + this.queryString;
       this.$http
         .post(this.apiUrl, {
@@ -57,6 +58,9 @@ export default {
         .catch(() => {
           this.errors.push("An error occured in the search, try again");
         });
+      } else{
+        this.errors.push("Value must be more than 3 characters");
+      }
     },
     clearErrors: function() {
       this.errors = [];
