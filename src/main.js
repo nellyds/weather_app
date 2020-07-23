@@ -8,7 +8,10 @@ Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "@/styles/style.css";
 import "@/styles/transition.css";
+var VuePaginate = require("vue-paginate");
+Vue.use(VuePaginate);
 new Vue({
   created() {
     AOS.init({});

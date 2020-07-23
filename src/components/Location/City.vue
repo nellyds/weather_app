@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="city">
     <p>{{ title }}</p>
     <Forecast v-bind:woeid="this.cityWoeid"> </Forecast>
   </div>
@@ -13,8 +13,22 @@ export default {
   props: {
     title: String,
     cityWoeid: String
-  },
-
+  }
 };
 </script>
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 415px) {
+  .city {
+    text-align: right;
+    margin-right: 15px;
+    width: 95%;
+  }
+}
+@media screen and (min-width: 416px) {
+  .city {
+    text-align: right;
+    margin-right: 15px;
+    width: 415px;
+  }
+}
+</style>

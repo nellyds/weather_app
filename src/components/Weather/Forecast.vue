@@ -1,38 +1,68 @@
 <template>
   <div>
     <v-button text @click="getForecast">Get Forecast </v-button>
-    <div v-if="forecastResults.length > 0">
-        <div v-for="forecast in forecastResults" v-bind:key="forecast.applicable_date">
-            <WeatherByDay v-bind:date="forecast.applicable_date" 
-        v-bind:city=title
-        v-bind:state="forecast.weather_state_name"
-        v-bind:high="forecast.max_temp"
-        v-bind:low="forecast.min_temp"
-        v-bind:windSpeed ="forecast.wind_speed"
-        v-bind:windDirection="forecast.wind_direction_compass"
-        v-bind:airPressure="forecast.air_pressure" 
-        v-bind:humidity="forecast.humidity" />
-        </div>
+    <LoadingAnimation v-if="gettingForecast" />
+    <div v-if="errors.length > 0">
+      <div v-for="(error, i) in errors" v-bind:key="i">
+        <v-alert
+          data-aos="fade-left"
+          border="left"
+          close-text="Close Alert"
+          dismissable
+          >{{ error }}
+        </v-alert>
+      </div>
+      <v-button text @click="clearErrors"
+        >I did nothing wrong and you saw nothing wrong.</v-button
+      >
     </div>
+    <v-row>
+      <div v-if="forecastResults.length > 0">
+        <div
+          v-for="forecast in forecastResults"
+          v-bind:key="forecast.applicable_date"
+        >
+          <v-col>
+            <WeatherByDay
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              v-bind:date="forecast.applicable_date"
+              v-bind:state="forecast.weather_state_name"
+              v-bind:high="forecast.max_temp"
+              v-bind:low="forecast.min_temp"
+              v-bind:windSpeed="forecast.wind_speed"
+              v-bind:windDirection="forecast.wind_direction_compass"
+              v-bind:airPressure="forecast.air_pressure"
+              v-bind:humidity="forecast.humidity"
+            />
+          </v-col>
+        </div>
+      </div>
+    </v-row>
   </div>
 </template>
 <script>
 import WeatherByDay from "@/components/Weather/WeatherByDay.vue";
+import LoadingAnimation from "@/components/LoadingAnimation.vue";
 export default {
-    components: {
-        WeatherByDay
-    },
-    data(){
-        return{
-            forecastResults: []
-        }
-    },
+  components: {
+    WeatherByDay,
+    LoadingAnimation
+  },
+  data() {
+    return {
+      forecastResults: [],
+      gettingForecast: null,
+      errors: []
+    };
+  },
   props: {
     woeid: String,
     title: String
   },
   methods: {
     getForecast: function() {
+      this.gettingForecast = true;
       let paramUrl = "location/" + this.woeid;
       window.alert(paramUrl);
       this.$http
@@ -40,8 +70,15 @@ export default {
           params: paramUrl
         })
         .then(response => {
-          this.forecastResults = response.data.consolidated_weather
+          this.forecastResults = response.data.consolidated_weather;
+          this.gettingForecast = false;
+        })
+        .catch(() => {
+          this.errors.push("Could not retrieve forecasts");
         });
+    },
+    clearErrors: function() {
+      this.errors = [];
     }
   },
   computed: {

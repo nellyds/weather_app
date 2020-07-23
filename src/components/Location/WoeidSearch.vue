@@ -1,31 +1,24 @@
 <template>
-  <v-container>
-    <p>
-      <v-button text @click="searchCitiesByCoordinates">Search cities</v-button>
-    </p>
+  <div>
+    City search
+    <v-text-field v-model="queryString" label="City, State, etc." />
+    <v-button text @click="searchWoeid">Search </v-button>
     <div v-if="errors.length > 0">
       <div v-for="(error, i) in errors" v-bind:key="i">
-        <v-alert
-          data-aos="fade-left"
-          border="left"
-          close-text="Close Alert"
-          dismissable
+        <v-alert border="left" close-text="Close Alert" dismissable
           >{{ error }}
         </v-alert>
       </div>
-      <v-button text @click="clearErrors"
-        >I did nothing wrong and you saw nothing wrong.</v-button
+      <v-button text @click="clearErrors" data-aos="fade-left"
+        >Ok, I get it. Let's forget all about those errors.</v-button
       >
     </div>
     <div v-if="cities.length > 0">
       <div v-for="(city, i) in cities" v-bind:key="i">
-        <div class="reveal-holder">
-          <div data-aos="reveal-right" class="reveal-block-black"></div>
-          <City v-bind:title="city.title" v-bind:cityWoeid="city.woeid" />
-        </div>
+        <City v-bind:title="city.title" v-bind:cityWoeid="city.woeid" />
       </div>
     </div>
-  </v-container>
+  </div>
 </template>
 <script>
 import City from "@/components/Location/City.vue";
@@ -35,6 +28,7 @@ export default {
   },
   data() {
     return {
+      queryString: null,
       cities: [],
       city: null,
       cityNames: [],
@@ -42,10 +36,8 @@ export default {
     };
   },
   methods: {
-    searchCitiesByCoordinates: function() {
-      let lat = this.coordinates[0];
-      let lon = this.coordinates[1];
-      let paramUrl = "location/search/?lattlong=" + lat + "," + lon;
+    searchWoeid: function() {
+      let paramUrl = "location/search/?query=" + this.queryString;
       this.$http
         .post(this.apiUrl, {
           params: paramUrl
@@ -55,9 +47,13 @@ export default {
           for (var i = 0; i < this.cities.length; i++) {
             this.cityNames.push(this.cities[i].title);
           }
+          if (this.cities.length < 1) {
+            this.errors.push("Could not retrieve any results");
+          }
+          this.queryString = "";
         })
         .catch(() => {
-          this.errors.push("Could not retrieve any results");
+          this.errors.push("An error occured in the search, try again");
         });
     },
     clearErrors: function() {
@@ -65,9 +61,6 @@ export default {
     }
   },
   computed: {
-    coordinates: function() {
-      return this.$store.state.coordinates;
-    },
     apiUrl: function() {
       return this.$store.state.apiUrl;
     }
