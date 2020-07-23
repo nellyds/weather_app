@@ -46,7 +46,9 @@ export default {
     };
   },
   methods: {
+    //
     searchCitiesByCoordinates: function() {
+      // since forecast information is organized by city, the geographic coordinates alone are not sufficient to retrieve weather data.  Using the coordinates either manually submitted or found using internal devices, the coordinates are used to query for the closest cities with available forecast data
       this.gettingCities = true;
       let lat = this.coordinates[0];
       let lon = this.coordinates[1];

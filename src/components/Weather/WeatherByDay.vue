@@ -3,7 +3,12 @@
     <v-card class="weatherCard" min-width="365" rounded outlined raised>
       <v-list-item two-line>
         <v-list-item-content>
-          <v-list-item-subtitle> <span style="font-weight: bold; font-size: 1.2em;"> {{ day }} </span> {{ date }}</v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <span style="font-weight: bold; font-size: 1.2em;">
+              {{ day }}
+            </span>
+            {{ date }}</v-list-item-subtitle
+          >
         </v-list-item-content>
       </v-list-item>
       <p class="expect">Expect:</p>
@@ -11,6 +16,7 @@
         <div data-aos="reveal-right" class="reveal-block-black"></div>
         <p class="state">{{ state }}</p>
       </div>
+      <!-- the temperature is displayed in celcius or frenheit, based on the users preference -->
       <div v-if="!metric">
         <p class="expect">With:</p>
         <div class="reveal-holder">
@@ -63,9 +69,10 @@
         </v-list-item>
       </div>
       <div class="toggle">
-      <v-btn color="black" outlined  @click="toggleMetric">
-        <p>C&deg; / F&deg;</p>
-      </v-btn>
+        <v-btn color="black" outlined @click="toggleMetric">
+          <!-- the user can toggle between metric and imperial measurements for temperature -->
+          <p>C&deg; / F&deg;</p>
+        </v-btn>
       </div>
     </v-card>
   </div>
@@ -84,6 +91,7 @@ export default {
   },
   data() {
     return {
+      // the initial temperature information is given in celcius, so the farenheit values must be derived from them
       highFaren: Math.floor(this.high * 1.8 + 32),
       lowFaren: Math.floor(this.low * 1.8 + 32),
       day: null
@@ -148,7 +156,7 @@ export default {
     margin-left: 15px;
   }
   .toggle {
-        margin-right: 10px;
+    margin-right: 10px;
     padding: 2px;
   }
 }

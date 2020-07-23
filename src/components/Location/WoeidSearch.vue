@@ -39,6 +39,7 @@ export default {
   },
   methods: {
     searchWoeid: function() {
+      // the user sends a request to the api containing a string value that hopefully matches a city with a woeid and forecast data available
       let paramUrl = "location/search/?query=" + this.queryString;
       this.$http
         .post(this.apiUrl, {
@@ -48,6 +49,7 @@ export default {
           this.cities = response.data;
 
           if (this.cities.length < 1) {
+            // if the query returns no results, the user is informed of the error
             this.errors.push("Could not retrieve any results");
           }
           this.queryString = "";

@@ -1,6 +1,7 @@
 <template>
   <div class="city">
     <p>{{ title }}</p>
+    <!-- the Forecast component takes the woeid of the city to make a request to the MetaWeather api -->
     <Forecast v-bind:woeid="this.cityWoeid"> </Forecast>
   </div>
 </template>

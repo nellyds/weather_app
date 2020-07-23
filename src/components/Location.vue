@@ -11,16 +11,16 @@
           >By city</v-btn
         >
         <transition name="slideLeft">
-        <div v-if="showCoordinateSearch">
-          <CoordinateFetch />
-          <CoordinateSet />
-          <GetCityByCoordinate v-if="coordinates != null" />
-        </div>
+          <div v-if="showCoordinateSearch">
+            <CoordinateFetch />
+            <CoordinateSet />
+            <GetCityByCoordinate v-if="coordinates != null" />
+          </div>
         </transition>
         <transition name="slideUp">
-        <div v-if="showCitySearch">
-          <WoeidSearch />
-        </div>
+          <div v-if="showCitySearch">
+            <WoeidSearch />
+          </div>
         </transition>
       </v-col>
     </v-row>
@@ -45,6 +45,7 @@ export default {
     CoordinateSet
   },
   methods: {
+    // the user will need to select which means of searching for a woeid, either by coordinates or directly looking up a city by name
     toggleShowCitySearch: function() {
       this.showCitySearch = true;
       this.showCoordinateSearch = false;

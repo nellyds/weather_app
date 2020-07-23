@@ -65,6 +65,7 @@ export default {
   },
   methods: {
     getForecast: function() {
+      // the Forecast component retrieves a seven day weather forecast based on the woeid prop passed to it from the City component
       this.gettingForecast = true;
       let paramUrl = "location/" + this.woeid;
       this.$http

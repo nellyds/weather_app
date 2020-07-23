@@ -35,6 +35,7 @@ export default {
       lon: null,
       valid: true,
       errors: [],
+      // latitude and longitude inputs are validated for numeric range and containing only numberic characters
       latRules: [
         v => !!v || "latitude is required",
         v =>
