@@ -3,7 +3,7 @@
     <v-card class="weatherCard" min-width="365" rounded outlined raised>
       <v-list-item two-line>
         <v-list-item-content>
-          <v-list-item-subtitle> {{day}}  {{ date }}</v-list-item-subtitle>
+          <v-list-item-subtitle> {{ day }} {{ date }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <p class="expect">Expect:</p>
@@ -32,7 +32,7 @@
         <div data-aos="reveal-right" class="reveal-block-black"></div>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon style="color:black">mdi-send</v-icon>
+            <v-icon style="color:black">mdi-weather-windy</v-icon>
           </v-list-item-icon>
           <v-list-item-subtitle style="color:black"
             >{{ Math.floor(windSpeed) }} km/h from
@@ -46,34 +46,35 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-cloud</v-icon>
+            <v-icon style="color:black">mdi-water</v-icon>
           </v-list-item-icon>
           <v-list-item-subtitle>{{ humidity }} %</v-list-item-subtitle>
         </v-list-item>
       </div>
-            <p class="expect">And Air Pressure of:</p>
+      <p class="expect">And Air Pressure of:</p>
       <div class="reveal-holder">
         <div data-aos="reveal-right" class="reveal-block-black"></div>
 
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-cloud</v-icon>
+            <v-icon style="color:black">mdi-cloud-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-subtitle>{{ airPressure }} PSI</v-list-item-subtitle>
         </v-list-item>
       </div>
-    <v-button color="rgba(0,0,0,0)" @click="toggleMetric" > C => F</v-button>
+      <v-button class="toggle" @click="toggleMetric">
+        <p>C&deg; / F&deg;</p>
+      </v-button>
     </v-card>
   </div>
 </template>
 <script>
 export default {
-    props: {
+  props: {
     date: String,
     state: String,
     high: Number,
     low: Number,
-
     windSpeed: Number,
     windDirection: String,
     airPressure: Number,
@@ -86,13 +87,13 @@ export default {
       day: null
     };
   },
-    methods:{
-        toggleMetric: function(){
-            this.$store.commit({
-                type: 'toggleMetric',
-            })
-        }
-    },
+  methods: {
+    toggleMetric: function() {
+      this.$store.commit({
+        type: "toggleMetric"
+      });
+    }
+  },
   mounted() {
     var dt = new Date(this.date);
     let dayOfWeek = dt.getDay();
@@ -144,6 +145,9 @@ export default {
     text-align: left;
     margin-left: 15px;
   }
+  .toggle {
+    margin: 10px;
+  }
 }
 @media screen and (min-width: 416px) {
   .temp {
@@ -161,6 +165,9 @@ export default {
   .expect {
     text-align: left;
     margin-left: 15px;
+  }
+  .toggle {
+    margin: 10px;
   }
 }
 </style>

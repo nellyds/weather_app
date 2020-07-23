@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-button text @click="getForecast">Get Forecast </v-button>
+    <v-btn outlined text @click="getForecast">Get Forecast </v-btn>
     <LoadingAnimation v-if="gettingForecast" />
     <div v-if="errors.length > 0">
       <div v-for="(error, i) in errors" v-bind:key="i">
@@ -12,8 +12,8 @@
           >{{ error }}
         </v-alert>
       </div>
-      <v-button text @click="clearErrors"
-        >I did nothing wrong and you saw nothing wrong.</v-button
+      <v-btn outlined color="black" @click="clearErrors"
+        >I did nothing wrong and you saw nothing wrong.</v-btn
       >
     </div>
     <v-row>
@@ -37,6 +37,9 @@
             />
           </v-col>
         </div>
+        <v-btn outlined color="black" @click="$vuetify.goTo('#robot')"
+          >Back to the top!</v-btn
+        >
       </div>
     </v-row>
   </div>
@@ -64,7 +67,6 @@ export default {
     getForecast: function() {
       this.gettingForecast = true;
       let paramUrl = "location/" + this.woeid;
-      window.alert(paramUrl);
       this.$http
         .post(this.apiUrl, {
           params: paramUrl

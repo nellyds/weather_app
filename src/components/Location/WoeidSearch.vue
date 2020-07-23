@@ -1,8 +1,11 @@
 <template>
   <div>
-    City search
-    <v-text-field v-model="queryString" label="City, State, etc." />
-    <v-button text @click="searchWoeid">Search </v-button>
+    <v-text-field
+      class="inputForm"
+      v-model="queryString"
+      label="City, State, etc."
+    />
+    <v-btn color="black" outlined @click="searchWoeid">Search </v-btn>
     <div v-if="errors.length > 0">
       <div v-for="(error, i) in errors" v-bind:key="i">
         <v-alert border="left" close-text="Close Alert" dismissable

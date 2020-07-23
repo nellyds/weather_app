@@ -1,8 +1,9 @@
 <template>
   <v-container>
-    <p>
-      <v-button text @click="searchCitiesByCoordinates">Search cities</v-button>
-    </p>
+    <v-btn color="black" outlined @click="searchCitiesByCoordinates"
+      >Find the city closest to you</v-btn
+    >
+    <LoadingAnimation v-if="gettingCities" />
     <div v-if="errors.length > 0">
       <div v-for="(error, i) in errors" v-bind:key="i">
         <v-alert
@@ -24,25 +25,30 @@
           <City v-bind:title="city.title" v-bind:cityWoeid="city.woeid" />
         </div>
       </div>
+      <v-btn outlined color="black" @click="clearCities">Start Over</v-btn>
     </div>
   </v-container>
 </template>
 <script>
 import City from "@/components/Location/City.vue";
+import LoadingAnimation from "@/components/LoadingAnimation.vue";
 export default {
   components: {
-    City
+    City,
+    LoadingAnimation
   },
   data() {
     return {
       cities: [],
       city: null,
       cityNames: [],
-      errors: []
+      errors: [],
+      gettingCities: null
     };
   },
   methods: {
     searchCitiesByCoordinates: function() {
+      this.gettingCities = true;
       let lat = this.coordinates[0];
       let lon = this.coordinates[1];
       let paramUrl = "location/search/?lattlong=" + lat + "," + lon;
@@ -55,13 +61,22 @@ export default {
           for (var i = 0; i < this.cities.length; i++) {
             this.cityNames.push(this.cities[i].title);
           }
+          this.gettingCities = false;
         })
         .catch(() => {
           this.errors.push("Could not retrieve any results");
+          this.gettingCities = false;
         });
     },
     clearErrors: function() {
       this.errors = [];
+    },
+    clearCities: function() {
+      this.cities = [];
+      this.$store.commit({
+        type: "clearCoordinates"
+      });
+      this.$vuetify.goTo("#robot");
     }
   },
   computed: {

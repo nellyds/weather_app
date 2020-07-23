@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <v-button @click="getCoordinates" text>Get coordinates</v-button>
+    <v-btn color="black" outlined @click="getCoordinates" text
+      >Use your location</v-btn
+    >
     <LoadingAnimation v-if="gettingLocation" />
     <div v-if="errors.length > 0">
       <div v-for="(error, i) in errors" v-bind:key="i">
@@ -8,8 +10,8 @@
           >{{ error }}
         </v-alert>
       </div>
-      <v-button text @click="clearErrors"
-        >Not my fault, but let's forget about that error anyway.</v-button
+      <v-btn color="black" outlined @click="clearErrors"
+        >Not my fault, but let's forget about that error anyway.</v-btn
       >
     </div>
   </v-container>
@@ -42,7 +44,6 @@ export default {
             coordinates: foundCoordinates
           });
           this.gettingLocation = false;
-          window.alert(this.$store.state.coordinates);
         },
         err => {
           this.gettingLocation = false;

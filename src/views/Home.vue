@@ -1,28 +1,28 @@
 <template>
   <div class="home">
-    <Intro />
-    <Location />
+    <Title />
+    <Intro id="robot" />
+    <Location id="location"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import Title from "@/components/Title.vue";
 import Location from "@/components/Location.vue";
 import Intro from "@/components/Intro.vue";
 export default {
   name: "Home",
-  data(){
-    return{
+  data() {
+    return {
       showIntro: true,
       showLocation: false
-    }
+    };
   },
   components: {
     Location,
-    Intro
+    Intro,
+    Title
   }
 };
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

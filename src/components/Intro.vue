@@ -1,61 +1,87 @@
 <template>
-    <div>
-        <p class="bubble speech" v-if="show1">Hello, my name is weather-bot and, theoretically, I can tell you about the next five days of weather.</p>
-        <p class="bubble speech" v-if="show2">How do I know?  Science and such.</p>
-        <p class="bubble speech" v-if="show3">Ready?</p>
+  <v-container data-aos="fade-left" class="robot" data-aos-duration="1000">
+    <div class="introConversation ">
+      <p
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        @click="changeMessage"
+        class="bubble speech"
+        v-if="show1"
+      >
+        Hello, my name is weather-bot and, theoretically, I can tell you about
+        the next five days of weather.
+      </p>
+      <p
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        @click="changeMessage"
+        class="bubble speech"
+        v-if="show2"
+      >
+        How do I know? Science and such.
+      </p>
+      <p
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        @click="changeMessage"
+        class="bubble speech"
+        v-if="show3"
+      >
+        Ready?
+      </p>
     </div>
+    <img @click="$vuetify.goTo('#location')" class="hvr-bob" src="@/assets/robot.png" />
+  </v-container>
 </template>
 <script>
+
 export default {
-    data(){
-        return{
-            show1: true,
-            show2: false,
-            show3: false
-        }
+
+  data() {
+    return {
+      show1: true,
+      show2: false,
+      show3: false
+    };
+  },
+  methods: {
+    changeMessage: function() {
+      if (this.show1 === true) {
+        this.show1 = false;
+        this.show2 = true;
+      } else if (this.show2 === true) {
+        this.show2 = false;
+        this.show3 = true;
+      } else {
+        this.show3 = false;
+        this.show1 = true;
+      }
     }
-}
+  }
+};
 </script>
 <style scoped>
-p.bubble {
-	position: relative;
-	width: 300px;
-	text-align: center;
-	line-height: 1.4em;
-	margin: 40px auto;
-	background-color: #fff;
-	border: 8px solid #333;
-	border-radius:5px;
-
-	padding: 10px;
-	font-size: large;
+@media screen and (max-width: 415px) {
+  .robot {
+    width: 95%;
+  }
+  img {
+    width: 300px;
+  }
+  .introConversation {
+    height: 200px;
+    margin-top: 25px;
+    margin-left: 15px;
+  }
 }
-
-p.thought {
-	width: 300px;
-	border-radius: 200px;
-	padding: 30px;
-}
-
-p.bubble:before,
-p.bubble:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-}
-
-p.speech:before {
-	left: 30px;
-	bottom: -50px;
-	border: 25px solid;
-	border-color: #333 transparent transparent #333;
-}
-
-p.speech:after {
-	left: 38px;
-	bottom: -30px;
-	border: 15px solid;
-	border-color: #fff transparent transparent #fff;
+@media screen and (min-width: 416px) {
+  .robot {
+    width: 400px;
+  }
+  .introConversation {
+    height: 200px;
+    margin-top: 25px;
+    margin-left: 15px;
+  }
 }
 </style>

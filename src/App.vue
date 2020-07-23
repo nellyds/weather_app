@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="black" dark> 
+    <v-app-bar app color="black" dark>
       <v-toolbar-title color="white">Weather Bot</v-toolbar-title>
     </v-app-bar>
     <v-main>

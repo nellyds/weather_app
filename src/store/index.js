@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    apiUrl: "http://127.0.0.1:5000/weather",
+    apiUrl: "http://nviar.herokuapp.com/weather",
     coordinates: null,
     metric: true,
     errors: []
@@ -16,8 +16,11 @@ export default new Vuex.Store({
       console.log("set");
       console.log(this.state.coordinates);
     },
-    toggleMetric(){
+    toggleMetric() {
       this.state.metric = !this.state.metric;
+    },
+    clearCoordinates() {
+      this.state.coordinates = null;
     }
   },
   actions: {},

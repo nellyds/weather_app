@@ -28,7 +28,7 @@ export default {
   .city {
     text-align: right;
     margin-right: 15px;
-    width: 415px;
+    width: 385px;
   }
 }
 </style>

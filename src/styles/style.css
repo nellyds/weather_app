@@ -3,3 +3,45 @@
     font-family: 'Poppins';
 
 }   
+.inputForm{
+    width: 300px;
+}
+.bubble
+{
+   position: relative;
+   width: 330px;
+   padding: 10px;
+   background: #ffffff;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+    border: #000000 solid 3px;
+}
+
+.bubble:after
+{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 20px 20px 0;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    bottom: -20px;
+    left: 155px;
+}
+
+.bubble:before
+{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 22px 22px 0;
+    border-color: #000000 transparent;
+    display: block;
+    width: 0;
+    z-index: 0;
+    bottom: -25px;
+    left: 153px;
+}
