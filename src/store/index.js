@@ -8,7 +8,6 @@ export default new Vuex.Store({
     apiUrl: "https://nviar.herokuapp.com/weather",
     coordinates: null,
     metric: true,
-    errors: []
   },
   mutations: {
     setCoordinates(state, argument) {

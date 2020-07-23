@@ -62,9 +62,11 @@
           <v-list-item-subtitle>{{ airPressure }} PSI</v-list-item-subtitle>
         </v-list-item>
       </div>
-      <v-button class="toggle" @click="toggleMetric">
+      <div class="toggle">
+      <v-btn color="black" outlined  @click="toggleMetric">
         <p>C&deg; / F&deg;</p>
-      </v-button>
+      </v-btn>
+      </div>
     </v-card>
   </div>
 </template>
@@ -146,7 +148,8 @@ export default {
     margin-left: 15px;
   }
   .toggle {
-    margin: 10px;
+        margin-right: 10px;
+    padding: 2px;
   }
 }
 @media screen and (min-width: 416px) {
@@ -167,7 +170,8 @@ export default {
     margin-left: 15px;
   }
   .toggle {
-    margin: 10px;
+    margin-right: 10px;
+    padding: 2px;
   }
 }
 </style>
