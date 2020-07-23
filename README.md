@@ -1,4 +1,6 @@
-# weather
+# weather Bot
+
+Running this project locally will require having npm and node in your environment.  The project is deployed to https://affectionate-hypatia-613232.netlify.app.  
 
 ## Project setup
 ```

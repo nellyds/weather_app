@@ -3,7 +3,7 @@
     <v-card class="weatherCard" min-width="365" rounded outlined raised>
       <v-list-item two-line>
         <v-list-item-content>
-          <v-list-item-subtitle> {{ day }} {{ date }}</v-list-item-subtitle>
+          <v-list-item-subtitle> <span style="font-weight: bold; font-size: 1.2em;"> {{ day }} </span> {{ date }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <p class="expect">Expect:</p>

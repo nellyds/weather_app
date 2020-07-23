@@ -10,14 +10,18 @@
         <v-btn outlined color="black" @click="toggleShowCitySearch"
           >By city</v-btn
         >
+        <transition name="slideLeft">
         <div v-if="showCoordinateSearch">
           <CoordinateFetch />
           <CoordinateSet />
           <GetCityByCoordinate v-if="coordinates != null" />
         </div>
+        </transition>
+        <transition name="slideUp">
         <div v-if="showCitySearch">
           <WoeidSearch />
         </div>
+        </transition>
       </v-col>
     </v-row>
   </v-container>
