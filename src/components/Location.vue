@@ -1,23 +1,25 @@
 <template>
   <v-container class="location">
-            <v-row>
-            <v-col v-if="$vuetify.breakpoint.smAndUp" cols="4"/>
-            <v-col >
-    <p>How do you want to search?</p>
-    <v-btn outlined color="black" @click="toggleShowCoordinateSearch"
-      >By coordinates</v-btn
-    >
-    <v-btn outlined color="black" @click="toggleShowCitySearch">By city</v-btn>
-    <div v-if="showCoordinateSearch">
-      <CoordinateFetch />
-      <CoordinateSet />
-      <GetCityByCoordinate v-if="coordinates != null" />
-    </div>
-    <div v-if="showCitySearch">
-      <WoeidSearch />
-    </div>
-            </v-col>
-            </v-row>
+    <v-row>
+      <v-col v-if="$vuetify.breakpoint.smAndUp" cols="4" />
+      <v-col>
+        <p>How do you want to search?</p>
+        <v-btn outlined color="black" @click="toggleShowCoordinateSearch"
+          >By coordinates</v-btn
+        >
+        <v-btn outlined color="black" @click="toggleShowCitySearch"
+          >By city</v-btn
+        >
+        <div v-if="showCoordinateSearch">
+          <CoordinateFetch />
+          <CoordinateSet />
+          <GetCityByCoordinate v-if="coordinates != null" />
+        </div>
+        <div v-if="showCitySearch">
+          <WoeidSearch />
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -56,7 +58,7 @@ export default {
 };
 </script>
 <style scoped>
-.location{
+.location {
   min-height: 100vh;
 }
 </style>

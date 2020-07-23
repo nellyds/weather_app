@@ -34,7 +34,6 @@ export default {
       queryString: null,
       cities: [],
       city: null,
-      cityNames: [],
       errors: []
     };
   },
@@ -47,9 +46,7 @@ export default {
         })
         .then(response => {
           this.cities = response.data;
-          for (var i = 0; i < this.cities.length; i++) {
-            this.cityNames.push(this.cities[i].title);
-          }
+
           if (this.cities.length < 1) {
             this.errors.push("Could not retrieve any results");
           }

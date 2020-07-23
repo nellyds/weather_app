@@ -30,13 +30,15 @@
         Ready?
       </p>
     </div>
-    <img @click="$vuetify.goTo('#location')" class="hvr-bob" src="@/assets/robot.png" />
+    <img
+      @click="$vuetify.goTo('#location')"
+      class="hvr-bob"
+      src="@/assets/robot.png"
+    />
   </v-container>
 </template>
 <script>
-
 export default {
-
   data() {
     return {
       show1: true,

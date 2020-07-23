@@ -2,7 +2,7 @@
   <div class="home">
     <Title />
     <Intro id="robot" />
-    <Location id="location"/>
+    <Location id="location" />
   </div>
 </template>
 
