@@ -27,6 +27,7 @@
   </v-container>
 </template>
 <script>
+
 import WoeidSearch from "@/components/Location/WoeidSearch.vue";
 import CoordinateFetch from "@/components/Location/CoordinateFetch.vue";
 import GetCityByCoordinate from "@/components/Location/GetCityByCoordinate.vue";

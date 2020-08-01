@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="black" dark>
-      <v-toolbar-title color="white">Weather Bot</v-toolbar-title>
+      <v-toolbar-title @click="alertSomething" color="white">Weather Bot</v-toolbar-title>
     </v-app-bar>
     <v-main>
       <router-view />
@@ -10,8 +10,10 @@
 </template>
 
 <script>
+import firstMixin from "@/mixins/firstMixin.js";
 export default {
   name: "App",
+  mixins: [firstMixin],
   components: {},
   methods: {},
   data: () => ({})

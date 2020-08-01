@@ -19,6 +19,7 @@
     </div>
     <div v-if="cities.length > 0">
       <div v-for="(city, i) in cities" v-bind:key="i">
+      
         <City v-bind:title="city.title" v-bind:cityWoeid="city.woeid" />
       </div>
     </div>

@@ -2,6 +2,7 @@
   <div class="city">
     <p>{{ title }}</p>
     <!-- the Forecast component takes the woeid of the city to make a request to the MetaWeather api -->
+    <v-btn label="emitButton" v-on:click="$emit('update', title)" />
     <Forecast v-bind:woeid="this.cityWoeid"> </Forecast>
   </div>
 </template>
@@ -14,7 +15,7 @@ export default {
   props: {
     title: String,
     cityWoeid: String
-  }
+  },
 };
 </script>
 <style scoped>
